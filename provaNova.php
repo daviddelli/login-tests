@@ -41,6 +41,8 @@ if(session_status()===PHP_SESSION_ACTIVE && !empty(session_id())&& isset($_SESSI
                 <button type="submit">Invia</button><br>
                 <label>Se questa è la tua prima volta qui, puoi creare una sessione  </label>
                 <input type="submit" name="creare" value="Crea">
+
+
             </form>
 
             <?php
