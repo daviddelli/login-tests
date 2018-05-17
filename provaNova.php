@@ -48,7 +48,7 @@ if(session_status()===PHP_SESSION_ACTIVE && !empty(session_id())&& isset($_SESSI
             <?php
 
 
-
+    //Commento
 
 
         } elseif(!empty($_POST['pwd'])&&!empty($_POST['username'])&&($_POST['username']==key($_SESSION))&&($_POST['pwd']==($_SESSION[$_POST['username']]))){
