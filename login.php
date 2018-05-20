@@ -1,19 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+</head>
+<body>
 <?php
 /**
- * Created by PhpStorm.
- * User: utente
- * Date: 19/05/18
- * Time: 22.29
+ * Pagina di login, questa pagina accetta valori arrivati usando il metodo POST per poi controllare che
+ * le credenziali combacino con una delle utenze presente in lista, creando poi la sessione e associando i valori
+ * relativi alla utenza dentro la sessione
  */
 
 
 //Con questo garantiamo di non entrare in loop infinito nel caso authCheck venga chiamato da qui
 $avoidInfiniteLoop = true;
 
+//Inizializza la sessione PHP se non è già attiva
 include 'authCheck.php';
 
 
 
+//----------------------------------------------------------------------------
 //Repository con le credenziali degli utenti
 $userList = array(
     array('username'    => 'david',
@@ -23,6 +30,7 @@ $userList = array(
           'password' => 'miguel',
           'role'     => 'ROLE_ADMIN')
 );
+//----------------------------------------------------------------------------
 
 
 
@@ -46,6 +54,7 @@ if(!empty($_POST['username']) && !empty($_POST['password']) && empty($_SESSION['
             }
         }
 
+        //Se siamo qui vuol dire che le credenziali immesse non sono corrette, notifichiamo
         if(empty($_SESSION['user_has_authenticated'])){
             $loginErrorMessages = 'Credenziali di accesso non corrette';
         }
@@ -53,7 +62,7 @@ if(!empty($_POST['username']) && !empty($_POST['password']) && empty($_SESSION['
 }
 
 
-
+//Se l'utente è loggato, a questo punto facciamo redirect verso la home
 if(!empty($_SESSION['user_has_authenticated'])) {
     //Utente loggato correttamente, mandiamo l'utente verso la home
     header('Location: index.php');
@@ -61,17 +70,22 @@ if(!empty($_SESSION['user_has_authenticated'])) {
     exit;
 }
 
-//Utente non loggato
-//-----------------------------------
 
-//Manteniamo l'utenza per ristampargliela nel form
+
+
+//Utente non loggato (per comodità dell'utente manteniamo le cose che ha scritto precedentemente tranne la password
+//-------------------------------------------------------------------------------------------------------------------
+
+//Stampiamo nel form i valori immessi
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
 } else {
     $username = null;
 }
 
-//Form di login
+
+
+//View Form di login
 //------------------------------------------
 ?>
 
@@ -131,10 +145,7 @@ if (isset($_POST['username'])) {
     }
 
 
-    .error-messages {
-        color: #ff0000;
-        margin: 20px 0px 20px 0px;
-    }
+    
 
 </style>
 
@@ -158,5 +169,5 @@ if (isset($_POST['username'])) {
 
 
 
-
+</body></html>
 
