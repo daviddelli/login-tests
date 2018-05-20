@@ -18,7 +18,7 @@ $avoidInfiniteLoop = true;
 //Inizializza la sessione PHP se non è già attiva
 include 'authCheck.php';
 
-
+//Commento fasullo
 
 //----------------------------------------------------------------------------
 //Repository con le credenziali degli utenti
