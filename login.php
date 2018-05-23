@@ -31,7 +31,11 @@ $userList = array(
           'role'     => 'ROLE_ADMIN'),
     array('username' => 'prova',
           'password' => 'prova',
-          'role'     => 'ROLE_ADMIN')
+          'role'     => 'ROLE_ADMIN'),
+    array('username' => 'michelle',
+        'password' => 'michelle',
+        'role'     => 'ROLE_ADMIN')
+
 );
 //----------------------------------------------------------------------------
 
