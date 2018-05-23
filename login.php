@@ -28,6 +28,9 @@ $userList = array(
           'role'        => 'ROLE_ADMIN'),
     array('username' => 'miguel',
           'password' => 'miguel',
+          'role'     => 'ROLE_ADMIN'),
+    array('username' => 'prova',
+          'password' => 'prova',
           'role'     => 'ROLE_ADMIN')
 );
 //----------------------------------------------------------------------------
@@ -92,9 +95,9 @@ if (isset($_POST['username'])) {
 
 <div class="wrapper">
     <form method="post" class="form-signin">
-        <h2 class="form-signin-heading">Accedi</h2>
-        <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" value="<?php echo $username; ?>" />
-        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+        <h2 class="form-signin-heading" style="font-family: ItalicT;">ACCEDI</h2>
+        <input type="text" style="font-family: Rage Italic;"class="form-control" name="username" placeholder="Username" required="" autofocus="" value="<?php echo $username; ?>" />
+        <input type="password" style="font-family: Rage Italic;"class="form-control" name="password" placeholder="Password" required=""/>
         <label class="checkbox">
             <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
         </label>
