@@ -19,6 +19,7 @@ if(empty($_SESSION['user_has_authenticated']) && !isset($avoidInfiniteLoop)){
     //-----------------------------------
 
     //Redirect verso la pagina di login
-    header('Location: login.php');
+    header('Location: login.php', false, 301);
+    header('ServitoDa: IlCazzoCheMeNeFrega');
     exit;
 }
