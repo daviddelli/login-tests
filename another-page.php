@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+        <link rel="stylesheet" type="text/css" href="styles/style2.css" />
     </head>
     <body>
     <?php
@@ -15,10 +15,10 @@
     require_once 'authCheck.php';
 
     ?>
-    <div class="form-signin form-control">
+    <div class="login-wrap" style="background:#eeeeee;">
 
-        <div>Utente loggato: <?php echo $_SESSION['username']; ?></div>
-        <div>Ruolo utenza:   <?php
+        <div class=""><label class="label">Utente loggato: <?php echo $_SESSION['username']; ?></label></div>
+        <div class="ruolo"><label  class="label">Ruolo utenza:   <?php
 
         switch($_SESSION['user_role']){
             case 'ROLE_ADMIN':
@@ -31,13 +31,12 @@
                 echo 'Anonimo ';
 
         }
-            ?></div>
+                ?></label></div>
         <hr/>
-        <div class="boxettino lawngreen">Qui sei su una qualsiasi altra pagina</div>
 
-        <div class="boxettino cadet offsetted"><a href="index.php">Torna sull'homepage</a></div>
-        <div class="boxettino aqua offsetted"><a href="logout.php">Fai click qui per effettuare il logout</a></div>
-
+        <button class="button"><a href="index.php" style="text-decoration: none;">Torna sull'homepage</a></button>
+        <button class="button"><a href="logout.php">Fai click qui per effettuare il logout</a></button>
+        <div class="" style="text-align: right; margin-top: 40px; margin-right: 30px;"><label class="label" >page 2</label></div>
     </div>
     </body>
 </html>

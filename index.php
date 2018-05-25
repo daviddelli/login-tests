@@ -15,34 +15,33 @@
     require_once 'authCheck.php';
 
     ?>
-    <style>
-
-    </style>
 
 
-    <div class="login-wrap" style="background:#eeeeee;">
-        <div class=""><label class="label">Utente loggato: <?php echo $_SESSION['username']; ?></label></div>
 
-        <div class="ruolo"><label  class="label">Ruolo utenza:   <?php
+            <div class="login-wrap" style="background:#eeeeee;">
+                <div class=""><label class="label">Utente loggato: <?php echo $_SESSION['username']; ?></label></div>
 
-        switch($_SESSION['user_role']){
-            case 'ROLE_ADMIN':
-                echo 'Amministratore ';
-                break;
-            case 'ROLE_USER';
-                echo 'Utente ';
-                break;
-            default:
-                echo 'Anonimo ';
+                <div class="ruolo"><label  class="label">Ruolo utenza:   <?php
 
-        }
-            ?></label></div>
+                switch($_SESSION['user_role']){
+                    case 'ROLE_ADMIN':
+                        echo 'Amministratore ';
+                        break;
+                    case 'ROLE_USER';
+                        echo 'Utente ';
+                        break;
+                    default:
+                        echo 'Anonimo ';
 
-        <button class="button"><a style="text-decoration: none;"  href="another-page.php">Vai su un'altra pagina</a></button>
+                }
+                    ?></label></div>
+                <hr/>
 
-        <button class="button"><a href="logout.php">Fai click qui per effettuare il logout</a></button>
+                <button class="button"><a style="text-decoration: none;"  href="another-page.php">Vai su un'altra pagina</a></button>
 
-    </div>
+                <button class="button"><a href="logout.php">Fai click qui per effettuare il logout</a></button>
+                <div class="" style="text-align: right; margin-top: 40px; margin-right: 30px;"><label class="label" >page 1</label></div>
+            </div>
     </body>
 </html>
 <?php
