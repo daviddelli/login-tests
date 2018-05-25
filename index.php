@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+        <link rel="stylesheet" type="text/css" href="styles/style2.css" />
     </head>
     <body>
 
@@ -20,9 +20,10 @@
     </style>
 
 
-    <div class="form-signin form-control">
-        <div>Utente loggato: <?php echo $_SESSION['username']; ?></div>
-        <div>Ruolo utenza:   <?php
+    <div class="login-wrap" style="background:#eeeeee;">
+        <div class=""><label class="label">Utente loggato: <?php echo $_SESSION['username']; ?></label></div>
+
+        <div class="ruolo"><label  class="label">Ruolo utenza:   <?php
 
         switch($_SESSION['user_role']){
             case 'ROLE_ADMIN':
@@ -35,11 +36,11 @@
                 echo 'Anonimo ';
 
         }
-            ?></div>
-        <hr/>
-        <div><a href="another-page.php">Vai su un'altra pagina</a></div>
-        <hr/>
-        <a href="logout.php">Fai click qui per effettuare il logout</a>
+            ?></label></div>
+
+        <button class="button"><a style="text-decoration: none;"  href="another-page.php">Vai su un'altra pagina</a></button>
+
+        <button class="button"><a href="logout.php">Fai click qui per effettuare il logout</a></button>
 
     </div>
     </body>

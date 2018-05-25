@@ -24,17 +24,18 @@ include 'authCheck.php';
 //Repository con le credenziali degli utenti
 $userList = array(
     array('username'    => 'david',
-          'password'    => 'david',
+          'password'    => 'delli3440330',
           'role'        => 'ROLE_ADMIN'),
     array('username' => 'miguel',
-          'password' => 'miguel',
+          'password' => 'miguelacho',
           'role'     => 'ROLE_ADMIN'),
-    array('username' => 'prova',
-          'password' => 'prova',
+    array('username' => 'merwebo',
+          'password' => 'merwebo',
           'role'     => 'ROLE_ADMIN'),
     array('username' => 'michelle',
         'password' => 'michelle',
         'role'     => 'ROLE_ADMIN')
+
 
 );
 //----------------------------------------------------------------------------
