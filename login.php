@@ -17,28 +17,28 @@ $avoidInfiniteLoop = true;
 
 //Inizializza la sessione PHP se non è già attiva
 include 'authCheck.php';
+include 'config.php';
 
 
+//Controlliamo se c'è MySQLi oppure MySQL normale
 
-//----------------------------------------------------------------------------
-//Repository con le credenziali degli utenti
-$userList = array(
-    array('username'    => 'david',
-          'password'    => 'delli3440330',
-          'role'        => 'ROLE_ADMIN'),
-    array('username' => 'miguel',
-          'password' => 'miguelacho',
-          'role'     => 'ROLE_ADMIN'),
-    array('username' => 'merwebo',
-          'password' => 'merwebo',
-          'role'     => 'ROLE_ADMIN'),
-    array('username' => 'michelle',
-        'password' => 'michelle',
-        'role'     => 'ROLE_ADMIN')
+if(empty($dbCredentials)){
+    die('Impossibile stabilire una connessione al Database');
+}
 
+if(function_exists('mysqli_connect')){
+    $connessione = new mysqli($dbCredentials['host'], $dbCredentials['user'], $dbCredentials['password'], $dbCredentials['database'],  $dbCredentials['port']);
 
-);
-//----------------------------------------------------------------------------
+    //Controlliamo connessione ed uscita in caso di fallimento
+    if (mysqli_connect_errno()) {
+        $errore = mysqli_connect_error();
+        echo("Errore di connessione con mysql: $errore");
+        exit;
+    }
+
+} else {
+    die('L\'installazione PHP necessita dell\'extension MySQLi');
+}
 
 
 
@@ -47,25 +47,34 @@ if(!empty($_POST['username']) && !empty($_POST['password']) && empty($_SESSION['
     //Controlliamo se ci stanno immettendo qualche credenziale
     //quindi autentichiamo l'utente
 
-        foreach($userList as $userInfo){
-            if($userInfo['username'] === $_POST['username'] && $userInfo['password'] === $_POST['password']){
+    //Elaboriamo Query
+    $getUtenteSQL = "SELECT * FROM user WHERE username = '" . $_POST['username'] . "' AND password = '" . $_POST['password'] . "' LIMIT 1";
+    //Eseguiamo query
+    $utenteResultSet = $connessione->query($getUtenteSQL);
 
-                //L'utente è stato autenticato quindi possiamo consentire l'accesso
-                $_SESSION['user_has_authenticated'] = true;
-                //Ci salviamo nella sessione altre informazioni pertinenti
-                $_SESSION['user_role'] = $userInfo['role'];
-                $_SESSION['username']  = $userInfo['username'];
+    //Evitiamo un crash nel caso non ci sia l'oggetto mysqli
+    if ($utenteResultSet){
+        $listaUtenti = $utenteResultSet->fetch_all(MYSQLI_ASSOC);
+    } else {
+        echo("La query non ha dato risultati\n");
+        exit;
+    }
 
-                //Usciamo dal loop
-                break;
+    //Se abbiamo almeno un recordset l'array non avrà zero elementi
+    if(count($listaUtenti) > 0){
+        //L'utente è stato autenticato quindi possiamo consentire l'accesso
+        $_SESSION['user_has_authenticated'] = true;
+        //Ci salviamo nella sessione altre informazioni pertinenti
+        $_SESSION['user_role'] = $listaUtenti[0]['role'];
+        $_SESSION['username']  = $listaUtenti[0]['username'];
 
-            }
-        }
-
+    } else {
         //Se siamo qui vuol dire che le credenziali immesse non sono corrette, notifichiamo
         if(empty($_SESSION['user_has_authenticated'])){
             $loginErrorMessages = 'Credenziali di accesso non corrette';
         }
+    }
+
 
 }
 
