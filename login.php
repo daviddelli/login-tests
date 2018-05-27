@@ -100,7 +100,7 @@ if (isset($_POST['username'])) {
 <div class="login-wrap">
     <?php
 
-    include __DIR__.'../form.php';
+    include __DIR__.'/form.php';
 
     ?>
 
